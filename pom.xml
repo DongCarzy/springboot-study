@@ -11,6 +11,7 @@
         <module>boot-dependencies</module>
         <module>boot-jdbctemplate</module>
         <module>boot-websocket</module>
+        <module>boot-redis</module>
     </modules>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
