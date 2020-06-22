@@ -10,6 +10,7 @@
     <modules>
         <module>boot-dependencies</module>
         <module>boot-jdbctemplate</module>
+        <module>boot-websocket</module>
     </modules>
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>

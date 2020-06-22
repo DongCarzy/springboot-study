@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>webSocket</title>
+</head>
+<body>
+Welcome<br/><input id="text" type="text"/>
+<button onclick="send()">发送消息</button>
+<button onclick="subscribe()">订阅消息 /topic/balance</button>
+<hr/>
+<div id="message"></div>
+</body>
+<script src="./js/stomp.min.js"></script>
+<script src="./js/sockjs.min.js"></script>
+
+<script type="text/javascript">
+    // 建立连接对象（还未发起连接）
+    var socket = new SockJS("http://localhost:5421/webSocket");
+    // 获取 STOMP 子协议的客户端对象
+    var stompClient = Stomp.over(socket);
+    // 向服务器发起websocket连接并发送CONNECT帧
+    stompClient.connect(
+        {},
+        function connectCallback(frame) {
+            // 连接成功时（服务器响应 CONNECTED 帧）的回调方法
+            setMessageInnerHTML("连接成功");
+            stompClient.subscribe('/topic/echo', function (response) {
+                setMessageInnerHTML("/topic/echo 你接收到的消息为:" + response.body);
+            });
+        },
+        function errorCallBack(error) {
+            // 连接失败时（服务器响应 ERROR 帧）的回调方法
+            setMessageInnerHTML("连接失败");
+        }
+    );
+
+    //发送消息
+    function send() {
+        var message = document.getElementById('text').value;
+        var messageJson = JSON.stringify({"type": "echo", "msg": "测试消息", "data": message});
+        stompClient.send("/app/echo", {}, messageJson);
+        setMessageInnerHTML("/app/echo 你发送的消息:" + messageJson);
+    }
+
+    //订阅消息
+    function subscribe() {
+        stompClient.subscribe('/topic/balance', function (response) {
+            setMessageInnerHTML("/topic/balance 你接收到的消息为: 服务器时间" + response.body);
+        });
+    }
+
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML) {
+        document.getElementById('message').innerHTML += innerHTML + '<br/>';
+    }
+</script>
+</html>
