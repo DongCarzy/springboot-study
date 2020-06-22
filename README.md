@@ -5,3 +5,4 @@
 ## 组件
 - [springboot-jdbctemplate](boot-jdbctemplate/README.md)
 - [springboot-websocket](boot-websocket/README.md)
+- [springboot-redis](boot-redis/README.md)
