@@ -4,20 +4,29 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <properties>
+        <revision>1.0.0-SNAPSHOT</revision>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
     <groupId>com.dxp</groupId>
     <artifactId>springboot-study</artifactId>
     <version>${revision}</version>
+
     <modules>
         <module>boot-dependencies</module>
         <module>boot-jdbctemplate</module>
         <module>boot-websocket</module>
         <module>boot-redis</module>
     </modules>
+
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>The parent project of springboot-study</description>
 
-    <properties>
-        <revision>1.0.0-SNAPSHOT</revision>
-    </properties>
+
 </project>
