@@ -22,6 +22,7 @@
         <module>boot-jdbctemplate</module>
         <module>boot-websocket</module>
         <module>boot-redis</module>
+        <module>boot-activemq</module>
     </modules>
 
     <packaging>pom</packaging>
