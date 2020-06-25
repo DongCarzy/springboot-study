@@ -1,6 +1,7 @@
 package com.dxp.activemq.config.constant;
 
 import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.activemq.command.ActiveMQTopic;
 
 import javax.jms.Destination;
 
@@ -20,5 +21,5 @@ public class AmqDestination {
     /**
      * 订阅
      */
-    public static final Destination TOPIC_TEST = new ActiveMQQueue("topic.test");
+    public static final Destination TOPIC_TEST = new ActiveMQTopic("topic.test");
 }

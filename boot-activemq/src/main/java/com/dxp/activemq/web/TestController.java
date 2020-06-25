@@ -3,21 +3,20 @@ package com.dxp.activemq.web;
 import com.dxp.activemq.config.constant.AmqDestination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsMessagingTemplate;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author carzy
- * @date 2018/08/01
  */
 @RestController
 public class TestController {
 
-    private JmsMessagingTemplate jmsTemplate;
+    private final JmsTemplate jmsTemplate;
 
-    @Autowired
-    public void setJmsTemplate(JmsMessagingTemplate jmsTemplate) {
+    public TestController(JmsTemplate jmsTemplate) {
         this.jmsTemplate = jmsTemplate;
     }
 

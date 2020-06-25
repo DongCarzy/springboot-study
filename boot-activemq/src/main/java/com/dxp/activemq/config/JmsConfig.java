@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
+import org.springframework.jms.core.JmsTemplate;
 
 import javax.jms.ConnectionFactory;
 
@@ -14,6 +15,10 @@ import javax.jms.ConnectionFactory;
 @Configuration
 public class JmsConfig {
 
+    @Bean
+    public JmsTemplate jmsTemplate(ConnectionFactory connectionFactory){
+        return new JmsTemplate(connectionFactory);
+    }
 
     @Bean("jmsQueueListenerContainerFactory")
     public DefaultJmsListenerContainerFactory jmsQueueListenerContainerFactory(ConnectionFactory connectionFactory) {
@@ -25,6 +30,7 @@ public class JmsConfig {
         //重连间隔时间
         factory.setRecoveryInterval(1000L);
         factory.setPubSubDomain(false);
+        factory.setAutoStartup(true);
         return factory;
 
     }
@@ -39,6 +45,7 @@ public class JmsConfig {
         factory.setConnectionFactory(connectionFactory);
         factory.setRecoveryInterval(1000L);
         factory.setPubSubDomain(true);
+        factory.setAutoStartup(true);
         return factory;
     }
 
@@ -56,6 +63,7 @@ public class JmsConfig {
         // 给订阅者一个名字,并开启持久订阅
         factory.setClientId("client_id");
         factory.setSubscriptionDurable(true);
+        factory.setAutoStartup(true);
         return factory;
     }
 

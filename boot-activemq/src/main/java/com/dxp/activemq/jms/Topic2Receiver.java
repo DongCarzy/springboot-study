@@ -2,7 +2,6 @@ package com.dxp.activemq.jms;
 
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
-import org.springframework.jms.config.JmsListenerContainerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -17,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Topic2Receiver {
 
-    @JmsListener(destination = "topicTest", containerFactory = "jmsTopicListenerContainerFactory2")
+    @JmsListener(destination = "topic.test", containerFactory = "jmsTopicListenerContainerFactory2")
     public void receive(String msg) {
         System.out.println("这是持久订阅: " + msg);
     }
