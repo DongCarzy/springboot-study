@@ -17,15 +17,19 @@ run com.dxp.graphql.Application.java 中的main函数即可
 
 #### 2. 测试
 
+该模块下有一个 `api` 文件夹， 下面有已经写好的案例 `book.http`
+
 ![](./imgs/test1.png)
 
 ## 核心
 
 ### 1.定义 Schema
+
 在resource下定义自己的 `graphql`,语法参照官网构建即可.       
 [graphql官网](https://graphql.org/)
 
 ### 2.定义DataFetcher
+
 DataFetcher 接口中只定义了一个方法.  可参考 `BookDataFetcher.java` 和 `AllBooksDataFetcher.java`
 ```dtd
     /**
