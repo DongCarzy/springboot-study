@@ -16,6 +16,7 @@
     <properties>
         <boot.starter.parent.version>2.3.1.RELEASE</boot.starter.parent.version>
         <spring.boot.maven.plugin.version>2.3.1.RELEASE</spring.boot.maven.plugin.version>
+        <graphql.spring.boot.starter.version>5.0.2</graphql.spring.boot.starter.version>
     </properties>
 
     <dependencyManagement>
@@ -31,6 +32,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring.boot.maven.plugin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.graphql-java</groupId>
+                <artifactId>graphql-spring-boot-starter</artifactId>
+                <version>${graphql.spring.boot.starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

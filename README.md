@@ -7,3 +7,4 @@
 - [springboot-websocket](boot-websocket/README.md)
 - [springboot-redis](boot-redis/README.md)
 - [springboot-activemq](boot-activemq/README.md)
+- [springboot-graphql](boot-graphql/README.md)

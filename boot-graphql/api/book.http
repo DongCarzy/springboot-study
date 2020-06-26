@@ -1,0 +1,29 @@
+### 请求集合
+POST http://localhost:8080/v1/books
+Content-Type: application/json
+
+{
+  "query":"{allBooks{id,authors,title,publishedDate,publisher}}",
+  "variables":{}
+}
+
+### 请求单个
+POST http://localhost:8080/v1/books
+Content-Type: application/json
+
+{
+  "query":"{\n book (id:\"9787121362132\") {\n id,\n  authors,\n title,\n publishedDate,\n publisher}}",
+  "variables":{}
+}
+
+### 自定义查询条件
+POST http://localhost:8080/v1/books
+Content-Type: application/json
+
+{
+  "query":"{page (page:0,size:2) {id, authors, title}}",
+  "variables":{}
+}
+
+###
+
