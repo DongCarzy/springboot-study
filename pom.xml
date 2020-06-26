@@ -24,6 +24,7 @@
         <module>boot-redis</module>
         <module>boot-activemq</module>
         <module>boot-graphql</module>
+        <module>boot-spring-session</module>
     </modules>
 
     <packaging>pom</packaging>
