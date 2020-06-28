@@ -3,7 +3,7 @@ GET http://localhost:8080/users/all
 Accept: application/json
 
 ### 创建用户
-GET http://localhost:8080/users/save?id=7&username=test&age=24&password=123
+GET http://localhost:8080/users/save?username=test&age=24&password=123
 Accept: application/json
 
 ### 修改用户

@@ -27,9 +27,6 @@ public class UserController {
 
     @GetMapping("/save")
     public User save(User user) {
-        if (user.getId() == null) {
-            throw new RuntimeException("id not null");
-        }
         this.userMapper.save(user);
         return user;
     }

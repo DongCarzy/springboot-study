@@ -8,7 +8,7 @@
         <result column="age" jdbcType="INTEGER" property="age"/>
     </resultMap>
 
-    <insert id="save">
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
         insert into `user`(id, username, password, age)
         values (#{user.id}, #{user.username}, #{user.password}, #{user.age})
     </insert>
