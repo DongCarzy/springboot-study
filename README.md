@@ -10,3 +10,5 @@
 - [springboot-activemq](boot-activemq/README.md)
 - [springboot-graphql](boot-graphql/README.md)
 - [springboot-session](boot-spring-session/README.md)
+- [springboot-mybatis](boot-mybatis/README.md)
+- [springboot-mybatis-plus](boot-mybatis-plus/README.md)

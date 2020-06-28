@@ -8,4 +8,4 @@ springboot 项目单独使用 `mybatis` 库.
 
 ## 其他
 
-[boot-mybatis-plus](../boot-mybatis-plus/README.md)
+[springboot-mybatis-plus](../boot-mybatis-plus/README.md)
