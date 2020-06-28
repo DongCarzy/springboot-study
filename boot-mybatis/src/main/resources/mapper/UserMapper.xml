@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxp.mybatis.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.dxp.mybatis.entity.User">
+        <id column="id" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+    </resultMap>
+
+    <insert id="save">
+        insert into `user`(id, username, password, age)
+        values (#{user.id}, #{user.username}, #{user.password}, #{user.age})
+    </insert>
+
+    <update id="updateById">
+        update `user`
+        set id = #{user.id}
+        <if test="user.username != null and !''.equals(user.username)">
+            , `username` = #{user.username}
+        </if>
+        <if test="user.password != null and !''.equals(user.password)">
+            , `password` = #{user.password}
+        </if>
+        <if test="user.age != null">
+            , `age` = #{user.age}
+        </if>
+        where id = #{user.id}
+    </update>
+
+    <delete id="deleteById">
+        delete
+        from `user`
+        where id = #{id}
+    </delete>
+
+    <select id="getById" resultMap="BaseResultMap">
+        select *
+        from `user`
+        where id = #{id}
+    </select>
+    <select id="all" resultMap="BaseResultMap">
+        select *
+        from `user`
+    </select>
+</mapper>

@@ -1,0 +1,15 @@
+###  查询所有用户
+GET http://localhost:8080/users/all
+Accept: application/json
+
+### 创建用户
+GET http://localhost:8080/users/save?id=7&username=test&age=24&password=123
+Accept: application/json
+
+### 修改用户
+GET http://localhost:8080/users/update/username/1?username=testupdate
+Accept: application/json
+
+### 删除用户
+GET http://localhost:8080/users/delete/1
+Accept: application/json

@@ -13,7 +13,7 @@
 
 #### 1. 启动后台
 
-run com.dxp.graphql.Application.java 中的main函数即可
+run com.dxp.graphql.com.dxp.mybatis.Application.java 中的main函数即可
 
 #### 2. 测试
 

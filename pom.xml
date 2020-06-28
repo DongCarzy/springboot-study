@@ -25,11 +25,12 @@
         <module>boot-activemq</module>
         <module>boot-graphql</module>
         <module>boot-spring-session</module>
+        <module>boot-mybatis</module>
+        <module>boot-mybatis-plus</module>
     </modules>
 
     <packaging>pom</packaging>
     <name>${project.artifactId}</name>
     <description>The parent project of springboot-study</description>
-
 
 </project>
