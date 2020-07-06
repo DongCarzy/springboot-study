@@ -1,4 +1,4 @@
-package com.dxp.netty.server;
+package com.dxp.netty.handler;
 
 import com.dxp.netty.protocol.protobuf.MessageBase;
 import com.dxp.netty.service.RegisterService;
