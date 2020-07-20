@@ -29,6 +29,7 @@
         <module>boot-mybatis</module>
         <module>boot-mybatis-plus</module>
         <module>boot-netty</module>
+        <module>boot-security</module>
     </modules>
 
     <packaging>pom</packaging>
