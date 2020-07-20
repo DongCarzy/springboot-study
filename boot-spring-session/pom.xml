@@ -12,18 +12,6 @@
     <artifactId>boot-spring-session</artifactId>
     <name>spring-session</name>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.dxp</groupId>
-                <artifactId>boot-dependencies</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
