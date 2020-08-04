@@ -34,7 +34,6 @@ public class NettyServer {
     }
 
     @PostConstruct
-
     public void run() throws InterruptedException {
         ServerBootstrap bootstrap = new ServerBootstrap();
         bootstrap.group(boss, work)
