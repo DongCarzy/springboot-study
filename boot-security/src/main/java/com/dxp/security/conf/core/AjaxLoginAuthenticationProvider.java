@@ -1,6 +1,6 @@
-package com.dxp.security.conf;
+package com.dxp.security.conf.core;
 
-import com.dxp.security.web.entity.User;
+import com.dxp.security.web.entity.sys.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.*;

@@ -1,4 +1,4 @@
-package com.dxp.security.web.entity;
+package com.dxp.security.web.entity.sys;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

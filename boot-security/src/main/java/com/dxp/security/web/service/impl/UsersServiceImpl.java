@@ -1,9 +1,8 @@
 package com.dxp.security.web.service.impl;
 
-import com.dxp.security.web.entity.Role;
-import com.dxp.security.web.entity.User;
+import com.dxp.security.web.entity.sys.Role;
+import com.dxp.security.web.entity.sys.User;
 import com.dxp.security.web.service.UserServer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
