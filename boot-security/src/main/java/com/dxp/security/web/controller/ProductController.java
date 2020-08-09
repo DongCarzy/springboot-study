@@ -47,7 +47,7 @@ public class ProductController {
     }
 
     @ApiOperation(value = "修改商品信息", notes = "传入对应的名称,价格和库存数即可")
-    @ApiImplicitParam(name = "id", required = true, paramType = "path", type = "Long")
+    @ApiImplicitParam(name = "id", required = true, paramType = "path")
     @PatchMapping("/{id}")
     public R<Product> update(@PathVariable Long id, @RequestBody ProductUpdate update) {
         Product product = new Product();
@@ -67,7 +67,7 @@ public class ProductController {
     }
 
     @ApiOperation(value = "删除商品信息", notes = "传入对应的商品ID")
-    @ApiImplicitParam(name = "id", required = true, paramType = "path", type = "Long")
+    @ApiImplicitParam(name = "id", required = true, paramType = "path")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {

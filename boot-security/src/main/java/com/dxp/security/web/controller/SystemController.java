@@ -22,18 +22,9 @@ public class SystemController {
 
     @ApiOperation(value = "登录", notes = "系统登录接口")
     @PostMapping("/login")
-    public R<LoginInfo> login(@RequestBody Login login, HttpServletRequest request) {
-        final String token = request.getSession().getId();
-        LoginInfo loginInfo = new LoginInfo();
-        loginInfo.setToken(token);
-        loginInfo.setUsername(login.getUsername());
-        return R.suc(loginInfo);
-    }
-
-    @GetMapping("/loginSuc")
-    @ResponseBody
-    private String index() {
-        return "login suc";
+    public R<LoginInfo> login(@RequestBody Login login) {
+        // 无实质意义，只为生成swagger文档
+        return R.suc(null);
     }
 
 }

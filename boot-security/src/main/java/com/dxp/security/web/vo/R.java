@@ -2,13 +2,15 @@ package com.dxp.security.web.vo;
 
 import com.dxp.security.constant.BusStatus;
 
+import java.io.Serializable;
+
 /**
  * jaxa返回的JSON
  *
  * @author carzy
  * @date 2020/8/6
  */
-public class R<T> {
+public class R<T> implements Serializable {
 
     private int code;
 
@@ -18,6 +20,14 @@ public class R<T> {
 
     public static <T> R<T> suc(T data) {
         return of(data, BusStatus.SUCCESS);
+    }
+
+    public static R<String> err(BusStatus status){
+        return err("", status);
+    }
+
+    public static R<String> err(String data, BusStatus status){
+        return of(data, status);
     }
 
     public static <T> R<T> of(T data, BusStatus status) {

@@ -12,7 +12,10 @@ public enum BusStatus {
      * 转态码 + 状态信息表述
      */
     SUCCESS(1000, "成功"),
-    UNKNOWN(1000, "未知异常"),
+    UNAUTHORIZED(4001, "未认证"),
+    AUTHORIZED_ERROR(4002, "用户名或密码错误"),
+    FORBIDDEN(4003, "权限不足"),
+    UNKNOWN(5000, "未知异常"),
     ;
 
     /**
