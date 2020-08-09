@@ -1,16 +1,17 @@
 package com.dxp.security.conf.core;
 
+import com.dxp.security.common.JWTTokenUtil;
+import com.dxp.security.web.entity.sys.User;
 import com.dxp.security.web.vo.R;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 
 /**
  * 登录成功处理
@@ -23,6 +24,11 @@ public class AjaxAuthenticationSuccessHandler extends AbstractFilterResponseOutP
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-        printJson(R.suc(httpServletRequest.getSession().getId()), httpServletResponse);
+        User user = (User) authentication.getPrincipal();
+        String token = JWTTokenUtil.createAccessToken(user);
+        HashMap<String, Object> re = new HashMap<>(4);
+        re.put("user", user);
+        re.put("token", token);
+        printJson(R.suc(re), httpServletResponse);
     }
 }

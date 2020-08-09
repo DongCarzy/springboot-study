@@ -1,9 +1,13 @@
 package com.dxp.security.web.entity.sys;
 
+import com.dxp.security.conf.core.StringGrantedAuthority;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 账号
@@ -17,11 +21,17 @@ public class User implements UserDetails {
 
     private String username;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     private boolean enabled;
 
-    private List<Role> authorities;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<StringGrantedAuthority> authorities = new ArrayList<>();
+
+    private List<Role> roles;
+
+    private List<Authorization> authorizations;
 
     public Long getId() {
         return id;
@@ -43,12 +53,38 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
-    public void setAuthorities(List<Role> authorities) {
+    public void setAuthorities(List<StringGrantedAuthority> authorities) {
         this.authorities = authorities;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.getAuthorities().addAll(roles.stream().map(r -> {
+            StringGrantedAuthority authority = new StringGrantedAuthority();
+            authority.setRole(r.getName());
+            return authority;
+        }).collect(Collectors.toSet()));
+        this.roles = roles;
+    }
+
+    public List<Authorization> getAuthorizations() {
+        return authorizations;
+    }
+
+    public void setAuthorizations(List<Authorization> authorizations) {
+        this.getAuthorities().addAll(authorizations.stream().map(r -> {
+            StringGrantedAuthority authority = new StringGrantedAuthority();
+            authority.setName(r.getName());
+            return authority;
+        }).collect(Collectors.toSet()));
+        this.authorizations = authorizations;
+    }
+
     @Override
-    public Collection<Role> getAuthorities() {
+    public Collection<StringGrantedAuthority> getAuthorities() {
         return authorities;
     }
 

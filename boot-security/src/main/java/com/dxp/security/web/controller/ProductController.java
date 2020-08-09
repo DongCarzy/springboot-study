@@ -7,8 +7,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -24,8 +26,9 @@ import java.util.stream.IntStream;
 @Api(tags = "商品操作", value = "商品的增/删/改/查操作")
 public class ProductController {
 
-    @ApiOperation(value = "查询商品集合", notes = "按照条件查询全部的商品信息")
+    @ApiOperation(value = "查询商品集合", notes = "按照条件查询全部的商品信息。需要拥有 product:read 权限")
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('product:read')")
     public R<List<Product>> list() {
         List<Product> list = IntStream.of(5).mapToObj(i -> {
             Product p = new Product();
@@ -38,16 +41,17 @@ public class ProductController {
         return R.suc(list);
     }
 
-    @ApiOperation(value = "新建商品信息", notes = "传入对应的名称,价格和库存数即可")
+    @ApiOperation(value = "新建商品信息", notes = "传入对应的名称,价格和库存数即可。需要拥有 product:create 权限或者 product 角色")
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public R<Product> save(@RequestBody Product product) {
+    @PreAuthorize("hasAnyAuthority('product:create') or hasRole('product')")
+    public R<Product> save(@Valid @RequestBody Product product) {
         product.setId(11L);
         return R.suc(product);
     }
 
-    @ApiOperation(value = "修改商品信息", notes = "传入对应的名称,价格和库存数即可")
+    @ApiOperation(value = "修改商品信息", notes = "传入对应的名称,价格和库存数即可. 需要拥有 admin 角色，并有product:update权限")
     @ApiImplicitParam(name = "id", required = true, paramType = "path")
+    @PreAuthorize("hasAnyAuthority('product:update') and hasRole('admin')")
     @PatchMapping("/{id}")
     public R<Product> update(@PathVariable Long id, @RequestBody ProductUpdate update) {
         Product product = new Product();
@@ -66,10 +70,10 @@ public class ProductController {
         return R.suc(product);
     }
 
-    @ApiOperation(value = "删除商品信息", notes = "传入对应的商品ID")
+    @ApiOperation(value = "删除商品信息", notes = "传入对应的商品ID。 需要拥有product:delete权限")
     @ApiImplicitParam(name = "id", required = true, paramType = "path")
+    @PreAuthorize("hasAnyAuthority('product:delete')")
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
     }
 
