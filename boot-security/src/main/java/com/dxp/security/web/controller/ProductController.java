@@ -50,7 +50,7 @@ public class ProductController {
     }
 
     @ApiOperation(value = "修改商品信息", notes = "传入对应的名称,价格和库存数即可. 需要拥有 admin 角色，并有product:update权限")
-    @ApiImplicitParam(name = "id", required = true, paramType = "path")
+    @ApiImplicitParam(name = "id", required = true, paramType = "path", dataTypeClass = Long.class)
     @PreAuthorize("hasAnyAuthority('product:update') and hasRole('admin')")
     @PatchMapping("/{id}")
     public R<Product> update(@PathVariable Long id, @RequestBody ProductUpdate update) {
@@ -71,7 +71,7 @@ public class ProductController {
     }
 
     @ApiOperation(value = "删除商品信息", notes = "传入对应的商品ID。 需要拥有product:delete权限")
-    @ApiImplicitParam(name = "id", required = true, paramType = "path")
+    @ApiImplicitParam(name = "id", required = true, paramType = "path", dataTypeClass = Long.class)
     @PreAuthorize("hasAnyAuthority('product:delete')")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {

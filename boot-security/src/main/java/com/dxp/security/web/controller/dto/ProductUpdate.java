@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author carzy
  * @date 2020/8/7
  */
-@ApiModel(value = "商品可被修改的字段")
+@ApiModel(value = "ProductUpdate", description = "商品可被修改的字段")
 public class ProductUpdate {
 
     @ApiModelProperty(name = "名称", required = true)

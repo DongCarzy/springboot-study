@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
  * @author carzy
  * @date 2020/8/7
  */
-@ApiModel("商品")
+@ApiModel(value = "Product", description = "商品")
 public class Product {
 
     @ApiModelProperty(value = "主键")

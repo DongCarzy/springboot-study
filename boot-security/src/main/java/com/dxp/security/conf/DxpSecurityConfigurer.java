@@ -69,6 +69,12 @@ public class DxpSecurityConfigurer extends WebSecurityConfigurerAdapter {
         return filter;
     }
 
+    @Bean
+    public JwtTokenFilter jwtTokenFilter() throws Exception {
+        JwtTokenFilter jwtTokenFilter = new JwtTokenFilter(authenticationManagerBean());
+        return jwtTokenFilter;
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
@@ -92,5 +98,6 @@ public class DxpSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated();
 
         http.addFilterAt(ajaxAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 }
