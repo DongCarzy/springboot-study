@@ -72,6 +72,7 @@
         <module>boot-mybatis-plus</module>
         <module>boot-netty</module>
         <module>boot-security</module>
+        <module>boot-shrio</module>
     </modules>
 
     <packaging>pom</packaging>
