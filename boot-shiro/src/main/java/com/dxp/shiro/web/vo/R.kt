@@ -1,8 +1,7 @@
-package com.dxp.shiro.web.vo;
+package com.dxp.shiro.web.vo
 
-import com.dxp.security.constant.BusStatus;
-
-import java.io.Serializable;
+import com.dxp.shiro.common.ErrorEnum
+import java.io.Serializable
 
 /**
  * jaxa返回的JSON
@@ -10,57 +9,38 @@ import java.io.Serializable;
  * @author carzy
  * @date 2020/8/6
  */
-public class R<T> implements Serializable {
+class R<T> : Serializable {
+    var code = 0
+    var msg: String? = null
+    var data: T? = null
+        private set
 
-    private int code;
-
-    private String msg;
-
-    private T data;
-
-    public static <T> R<T> suc(T data) {
-        return of(data, BusStatus.SUCCESS);
+    fun setData(data: T) {
+        this.data = data
     }
 
-    public static R<String> err(BusStatus status){
-        return err("", status);
-    }
+    companion object {
 
-    public static R<String> err(String data, BusStatus status){
-        return of(data, status);
-    }
+        fun <T> suc(data: T): R<T> {
+            return of(data, ErrorEnum.S_200)
+        }
 
-    public static <T> R<T> of(T data, BusStatus status) {
-        R<T> r = new R<>();
-        r.setCode(status.code());
-        //todo.. 国际化. 英文时则用 status.name()
-//        r.setMsg(status.name());
-        r.setMsg(status.description());
-        r.setData(data);
-        return r;
-    }
+        fun err(status: ErrorEnum): R<String> {
+            return err("", status)
+        }
 
-    public int getCode() {
-        return code;
-    }
+        @JvmStatic
+        fun err(data: String, status: ErrorEnum): R<String> {
+            return of(data, status)
+        }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
+        fun <T> of(data: T, status: ErrorEnum): R<T> {
+            val r = R<T>()
+            r.code = status.errorCode
+            // todo(国际化. 英文时则用 status.name())
+            r.msg = status.errorMsg
+            r.setData(data)
+            return r
+        }
     }
 }
