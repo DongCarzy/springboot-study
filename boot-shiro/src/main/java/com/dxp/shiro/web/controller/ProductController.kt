@@ -6,10 +6,10 @@ import com.dxp.shiro.web.vo.R
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiImplicitParam
 import io.swagger.annotations.ApiOperation
+import org.apache.shiro.SecurityUtils
 import org.apache.shiro.authz.annotation.RequiresPermissions
 import org.apache.shiro.authz.annotation.RequiresRoles
 import org.springframework.web.bind.annotation.*
-import java.util.function.IntFunction
 import java.util.stream.Collectors
 import java.util.stream.IntStream
 import javax.validation.Valid
@@ -23,7 +23,8 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("/api/v1/product")
 @Api(tags = ["商品操作"], value = "商品的增/删/改/查操作")
-class ProductController {
+open class ProductController {
+
     @ApiOperation(value = "查询商品集合", notes = "按照条件查询全部的商品信息。需要拥有 product:read 权限")
     @GetMapping
     @RequiresPermissions("product:read")
@@ -41,10 +42,16 @@ class ProductController {
         return R.suc(data)
     }
 
-    @ApiOperation(value = "新建商品信息", notes = "传入对应的名称,价格和库存数即可。需要拥有 product:create 权限或者 product 角色")
+    @ApiOperation(value = "新建商品信息", notes = "传入对应的名称,价格和库存数即可。需要拥有 product:create")
     @PostMapping
     @RequiresPermissions("product:create")
     fun save(@RequestBody product: @Valid Product): R<Product> {
+        var subject = SecurityUtils.getSubject();
+        try {
+            subject.checkPermission("product:create");
+        } catch (e: Exception) {
+            println(e)
+        }
         product.id = 11L
         return R.suc(product)
     }

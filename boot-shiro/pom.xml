@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>boot-shrio</artifactId>
+    <artifactId>boot-shiro</artifactId>
 
     <dependencies>
         <!-- web -->
@@ -38,6 +38,12 @@
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-kotlin</artifactId>
+            <version>2.11.0</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>

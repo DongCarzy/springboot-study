@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/v1/")
 @Api(tags = ["系统"], value = "系统登陆")
-class SystemController {
+open class SystemController {
 
     @Autowired
     private lateinit var userService: UserService;
