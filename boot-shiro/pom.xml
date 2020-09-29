@@ -9,7 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>boot-shrio</artifactId>
+    <artifactId>boot-shiro</artifactId>
+    <name>boot-shiro</name>
 
     <properties>
         <kotlin.version>1.4.0</kotlin.version>
