@@ -29,7 +29,7 @@ open class SwaggerConfiguration {
                 .groupName("v1")
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.dxp.security"))
+                .apis(RequestHandlerSelectors.basePackage("com.dxp.shiro"))
                 .paths(PathSelectors.any())
                 .build()
     }
