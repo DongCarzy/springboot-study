@@ -96,6 +96,7 @@
         <module>boot-netty</module>
         <module>boot-security</module>
         <module>boot-shiro</module>
+        <module>boot-mongodb</module>
     </modules>
 
     <packaging>pom</packaging>
